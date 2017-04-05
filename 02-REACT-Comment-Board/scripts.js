@@ -7,6 +7,8 @@ var Comment = React.createClass({
         console.log("Edit Clicked");
 
         this.setState({edit: true});
+
+        console.log(this.refs);
     },
 
     remove: function() {
@@ -24,6 +26,12 @@ var Comment = React.createClass({
         this.setState({edit: false});
 
         this.props.updateComment(val, this.props.index);
+    },
+
+    cancel: function() {
+        console.log("Cancel Clicked");
+
+        this.setState({edit: false});
     },
 
     getHeader: function() {
@@ -75,7 +83,7 @@ var Comment = React.createClass({
         )
     },
 
-    renderEdit: function() {
+    renderEdit: function() {        
         return (
             <div className="container">
                 <div className="card">
@@ -83,14 +91,14 @@ var Comment = React.createClass({
                         {this.getHeader()}
 
                         <div className="content">
-                            <textarea ref="editedComment" defaultValue={this.props.children}></textarea>
+                            <textarea className="textarea" ref="editedComment" defaultValue={this.props.children}></textarea>
                             <br />
                             <small>11:09 PM - 1 Jan 2016</small>
                         </div>
                     </div>
                     <footer className="card-footer">
                         <a className="card-footer-item" onClick={this.save}>Save</a>
-                        <a className="card-footer-item" onClick={this.remove}>Delete</a>
+                        <a className="card-footer-item" onClick={this.cancel}>Cancel</a>
                     </footer>
                 </div>
             </div>
